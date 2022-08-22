@@ -1,0 +1,39 @@
+#include <P1AM.h>
+
+void setup(){ // the setup routine runs once:
+
+  Serial.begin(115200);  //initialize serial communication at 115200 bits per second 
+  while (!P1.init()){ 
+    ; //Wait for Modules to Sign on  
+       
+  }
+  
+}
+void loop(){  // the loop routine runs over and over again forever:
+  
+  for(int channel = 1; channel <=16; channel++){
+      P1.writeDiscrete(HIGH,1,channel); 
+      delay(1000);
+      P1.writeDiscrete(LOW,1,channel); 
+      delay(1000);        
+  }
+  for(int channel = 1; channel <=16; channel++){
+      P1.writeDiscrete(HIGH,2,channel); 
+      delay(1000);
+      P1.writeDiscrete(LOW,2,channel); 
+      delay(1000);       
+  }
+  for(int channel = 1; channel <=16; channel++){
+      P1.writeDiscrete(HIGH,3,channel); 
+      delay(1000);
+      P1.writeDiscrete(LOW,3,channel); 
+      delay(1000);        
+  }
+  for(int channel = 1; channel <=16; channel++){
+      P1.writeDiscrete(HIGH,4,channel); 
+      delay(1000);
+      P1.writeDiscrete(LOW,4,channel); 
+      delay(1000); 
+  }
+
+}
