@@ -1,0 +1,79 @@
+#include <P1AM.h>
+
+void setup(){ // the setup routine runs once:
+
+  Serial.begin(115200);  //initialize serial communication at 115200 bits per second 
+  while (!P1.init()){ 
+    ; //Wait for Modules to Sign on   
+  }
+}
+
+
+int btnRed;
+int btnYellow;
+int btnGreen;
+int btnOff;
+
+void loop(){  // the loop routine runs over and over again forever:
+  
+btnRed = P1.readDiscrete(2,4);  //Read input value of slot 2 in channel 4
+  if (btnRed) {
+    P1.writeDiscrete(HIGH,1,2); //Write output slot 1 channel 2
+    P1.writeDiscrete(HIGH,1,5);
+    P1.writeDiscrete(HIGH,1,8);
+    P1.writeDiscrete(HIGH,1,11);
+    P1.writeDiscrete(HIGH,1,14);
+    Serial.println("red");
+  }  
+  else {
+    P1.writeDiscrete(LOW,1,2);
+    P1.writeDiscrete(LOW,1,5);
+    P1.writeDiscrete(LOW,1,8);
+    P1.writeDiscrete(LOW,1,11);
+    P1.writeDiscrete(LOW,1,14);
+  }
+
+btnYellow = P1.readDiscrete(2,3);  //Read the value of slot 2 in channel 3
+  if (btnYellow) {
+    P1.writeDiscrete(HIGH,1,3); //Write slot 1 channel 3
+    P1.writeDiscrete(HIGH,1,6);
+    P1.writeDiscrete(HIGH,1,9);
+    P1.writeDiscrete(HIGH,1,12);
+    P1.writeDiscrete(HIGH,1,15);
+    Serial.println("yellow");
+  } 
+  else {
+    P1.writeDiscrete(LOW,1,3);
+    P1.writeDiscrete(LOW,1,6);
+    P1.writeDiscrete(LOW,1,9);
+    P1.writeDiscrete(LOW,1,12);
+    P1.writeDiscrete(LOW,1,15);
+  }
+
+btnGreen = P1.readDiscrete(2,1);  //Read the value of slot 2 in channel 1
+  if (btnGreen) {
+    P1.writeDiscrete(HIGH,1,1); //Write slot 1 channel 1
+    P1.writeDiscrete(HIGH,1,4);
+    P1.writeDiscrete(HIGH,1,7);
+    P1.writeDiscrete(HIGH,1,10);
+    P1.writeDiscrete(HIGH,1,13);
+    Serial.println("green");
+  } 
+  else {
+    P1.writeDiscrete(LOW,1,1);
+    P1.writeDiscrete(LOW,1,4);
+    P1.writeDiscrete(LOW,1,7);
+    P1.writeDiscrete(LOW,1,10);
+    P1.writeDiscrete(LOW,1,13);
+  }
+
+//btnOff = P1.readDiscrete(2,2);  //Read the value of slot 2 in channel 2
+  //if (btnOff) {
+    //P1.writeDiscrete(HIGH,1,5); //Write slot 1 channel 5
+    //Serial.println("off");
+  //} 
+ // else {
+    //P1.writeDiscrete(LOW,1,5);
+  //}
+
+}
